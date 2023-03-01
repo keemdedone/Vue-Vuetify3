@@ -6,6 +6,7 @@
           <v-navigation-drawer>
             <v-list nav mandatory>
               <v-list-item
+                min-height="36"
                 color="primary"
                 prepend-icon="mdi-home"
                 value="home"
@@ -15,6 +16,7 @@
                 <span class="text-body-2">Home</span>
               </v-list-item>
               <v-list-item
+                min-height="36"
                 color="red"
                 prepend-icon="mdi-calendar"
                 value="calendar"
@@ -24,6 +26,7 @@
                 <span class="text-body-2">Calendar</span>
               </v-list-item>
               <v-list-item
+                min-height="36"
                 color="orange-darken-2"
                 prepend-icon="mdi-account"
                 value="users"
@@ -52,6 +55,13 @@ export default {
       this.$router.push({ path: `/${route}` });
       this.currentRoute = route;
     },
+  },
+  mounted() {
+    if (this.$route.name) {
+      this.currentRoute = String(this.$route.name).toLowerCase();
+    } else {
+      this.currentRoute = "home";
+    }
   },
   watch: {
     $route(to) {
