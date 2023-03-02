@@ -33,8 +33,7 @@
                   class="px-3"
                   variant="tonal"
                   min-width="28"
-                  :border="true"
-                  :color="user.active ? 'success' : 'error'"
+                  :color="user.active ? 'green-lighten-1' : 'red-darken-1'"
                 >
                   <v-icon
                     size="22"
@@ -46,7 +45,7 @@
                   ></v-icon>
                 </v-btn>
               </td>
-              <td>
+              <td style="min-width: 240px">
                 <v-btn
                   variant="flat"
                   min-width="28"
@@ -70,7 +69,6 @@
                   min-width="28"
                   class="menu-btn"
                   color="error"
-                  @click="onOpenDialog(4)"
                 >
                   <v-icon size="22" icon="mdi-trash-can-outline"></v-icon>
                 </v-btn>
@@ -81,7 +79,11 @@
       </div>
     </v-responsive>
   </v-container>
-  <UsersDialog :openDialog="showDialog" @close="onDialogClose" />
+  <UsersDialog
+    :dialogOpen="showDialog.open"
+    :dialogID="showDialog.id"
+    @close="onDialogClose"
+  />
 </template>
 
 <script lang="ts">
@@ -92,9 +94,11 @@ export default {
     UsersDialog,
   },
   data() {
-    let showDialog = false;
     return {
-      showDialog,
+      showDialog: {
+        open: false,
+        id: 0,
+      },
       users: [
         {
           id: 1,
@@ -119,10 +123,14 @@ export default {
   },
   methods: {
     onOpenDialog(id: number): any {
-      this.showDialog = true;
+      console.log("on open");
+      this.showDialog.id = id;
+      this.showDialog.open = true;
     },
-    onDialogClose(close: boolean) {
-      this.showDialog = false;
+    onDialogClose() {
+      console.log("on close");
+      this.showDialog.id = 0;
+      this.showDialog.open = false;
     },
   },
 };
@@ -135,7 +143,7 @@ export default {
 }
 .menu-btn {
   padding: 0 12px;
-  margin: auto 10px;
+  margin: auto 8px;
 
   &.v-theme--light {
     $green: rgba(76, 175, 80, 0.5);
@@ -164,10 +172,10 @@ export default {
   }
 
   &.v-theme--dark {
-    $green: rgba(112, 255, 117, 0.3);
-    $purple: rgba(187, 134, 243, 0.3);
-    $red: rgba(244, 67, 54, 0.3);
-    $yellow: rgba(251, 141, 0, 0.3);
+    $green: rgba(112, 255, 117, 0.4);
+    $purple: rgba(187, 134, 243, 0.4);
+    $red: rgba(244, 67, 54, 0.4);
+    $yellow: rgba(251, 141, 0, 0.4);
     &.bg-success {
       filter: drop-shadow(0 0 2px $green) drop-shadow(0 0 5px $green)
         drop-shadow(0 0 15px $green);

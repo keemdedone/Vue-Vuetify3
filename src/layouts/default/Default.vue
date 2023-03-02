@@ -14,8 +14,15 @@ import DefaultSide from "./AppSide.vue";
 
 <style lang="scss">
 .limit-width {
-  max-width: calc(100% - 180px);
+  max-width: calc(100% - 200px);
   width: 100%;
   margin-left: auto;
+}
+
+@media screen and (max-width: 1280px) {
+  .limit-width {
+    max-width: 100%;
+    margin: auto;
+  }
 }
 </style>

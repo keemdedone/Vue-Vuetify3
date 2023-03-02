@@ -13,7 +13,7 @@
                 :active="currentRoute == 'home'"
                 @click="navigate('home')"
               >
-                <span class="text-body-2">Home</span>
+                <span class="text-uppercase text-body-2">Home</span>
               </v-list-item>
               <v-list-item
                 min-height="36"
@@ -23,7 +23,7 @@
                 :active="currentRoute == 'calendar'"
                 @click="navigate('calendar')"
               >
-                <span class="text-body-2">Calendar</span>
+                <span class="text-uppercase text-body-2">Calendar</span>
               </v-list-item>
               <v-list-item
                 min-height="36"
@@ -33,7 +33,7 @@
                 :active="currentRoute == 'users'"
                 @click="navigate('users')"
               >
-                <span class="text-body-2">Users</span>
+                <span class="text-uppercase text-body-2">Users</span>
               </v-list-item>
             </v-list>
           </v-navigation-drawer>
@@ -72,13 +72,23 @@ export default {
 </script>
 
 <style lang="scss">
+.letter-spacing {
+  letter-spacing: 2px;
+}
+
 .container {
   position: absolute;
-  width: 180px;
+  width: 200px;
   top: 64px;
   left: 0;
   z-index: 2;
   overflow: hidden;
   transition: width 0.5s ease;
+}
+
+@media screen and (max-width: 1280px) {
+  .container {
+    width: 0;
+  }
 }
 </style>
