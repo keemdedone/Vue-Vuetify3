@@ -8,18 +8,12 @@
             variant="flat"
             min-width="28"
             color="warning"
-            @click="onOpenDialog"
+            @click="onOpenDialog(1)"
           >
             <v-icon size="22" icon="mdi-account-plus"></v-icon>
           </v-btn>
         </div>
-        <v-table
-          style="
-            border: thin solid
-              rgba(var(--v-border-color), var(--v-border-opacity));
-            border-radius: 5px;
-          "
-        >
+        <v-table class="t-border-custom">
           <thead>
             <tr>
               <th class="text-center">ID</th>
@@ -58,6 +52,7 @@
                   min-width="28"
                   class="menu-btn"
                   color="success"
+                  @click="onOpenDialog(2)"
                 >
                   <v-icon size="22" icon="mdi-magnify"></v-icon>
                 </v-btn>
@@ -66,6 +61,7 @@
                   min-width="28"
                   class="menu-btn"
                   color="primary"
+                  @click="onOpenDialog(3)"
                 >
                   <v-icon size="22" icon="mdi-pencil"></v-icon>
                 </v-btn>
@@ -74,6 +70,7 @@
                   min-width="28"
                   class="menu-btn"
                   color="error"
+                  @click="onOpenDialog(4)"
                 >
                   <v-icon size="22" icon="mdi-trash-can-outline"></v-icon>
                 </v-btn>
@@ -84,12 +81,20 @@
       </div>
     </v-responsive>
   </v-container>
+  <UsersDialog :openDialog="showDialog" @close="onDialogClose" />
 </template>
 
 <script lang="ts">
+import UsersDialog from "./UsersDialog.vue";
+
 export default {
+  components: {
+    UsersDialog,
+  },
   data() {
+    let showDialog = false;
     return {
+      showDialog,
       users: [
         {
           id: 1,
@@ -113,17 +118,24 @@ export default {
     };
   },
   methods: {
-    onOpenDialog() {
-      console.log("open");
+    onOpenDialog(id: number): any {
+      this.showDialog = true;
+    },
+    onDialogClose(close: boolean) {
+      this.showDialog = false;
     },
   },
 };
 </script>
 
 <style scoped lang="scss">
+.t-border-custom {
+  border: thin solid rgba(var(--v-border-color), var(--v-border-opacity));
+  border-radius: 5px;
+}
 .menu-btn {
   padding: 0 12px;
-  margin: auto 12px;
+  margin: auto 10px;
 
   &.v-theme--light {
     $green: rgba(76, 175, 80, 0.5);

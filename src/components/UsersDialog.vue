@@ -1,6 +1,7 @@
 <template>
+  <h1>{{ openDialog ? "True" : "False" }}</h1>
   <v-row justify="center">
-    <v-dialog v-model="dialog" persistent width="1024">
+    <v-dialog v-model="dialog" @close="onDialogClose()" persistent width="1024">
       <v-card>
         <v-card-title>
           <span class="text-h5">User Profile</span>
@@ -65,10 +66,10 @@
         </v-card-text>
         <v-card-actions>
           <v-spacer></v-spacer>
-          <v-btn color="blue-darken-1" variant="text" @click="dialog = false">
+          <v-btn color="blue-darken-1" variant="text" @click="onDialogClose()">
             Close
           </v-btn>
-          <v-btn color="blue-darken-1" variant="text" @click="dialog = false">
+          <v-btn color="blue-darken-1" variant="text" @click="onDialogClose()">
             Save
           </v-btn>
         </v-card-actions>
@@ -79,10 +80,27 @@
 
 <script lang="ts">
 export default {
+  props: { openDialog: Boolean },
   data() {
     return {
       dialog: false,
     };
   },
+  watch: {
+    openDialog(open: boolean) {
+      if (open) {
+        console.log("open dialog");
+        this.dialog = true;
+      }
+    },
+  },
+  methods: {
+    onDialogClose() {
+      console.log("close dialog");
+      this.dialog = false;
+      this.$emit("close", true);
+    },
+  },
+  emits: ["close"],
 };
 </script>
