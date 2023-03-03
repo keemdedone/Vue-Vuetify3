@@ -194,6 +194,13 @@ export default {
     return {
       open: false,
       id: 0,
+      createForm: {
+        firstName: null,
+        lastName: null,
+        username: null,
+        email: null,
+        password: null,
+      },
     };
   },
   watch: {

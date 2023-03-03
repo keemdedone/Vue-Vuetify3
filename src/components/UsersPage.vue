@@ -24,21 +24,23 @@
             </tr>
           </thead>
           <tbody>
-            <tr v-for="user in users" :key="user.name">
-              <td>{{ user.id }}</td>
-              <td>{{ user.name }}</td>
-              <td>{{ user.level }}</td>
+            <tr v-for="(user, index) in users" :key="index">
+              <td>{{ user.uID }}</td>
+              <td>{{ user.uUserName }}</td>
+              <td>{{ user.uLevel }}</td>
               <td>
                 <v-btn
                   class="px-3"
                   variant="tonal"
                   min-width="28"
-                  :color="user.active ? 'green-lighten-1' : 'red-darken-1'"
+                  :color="
+                    user.uActive !== 0 ? 'green-lighten-1' : 'red-darken-1'
+                  "
                 >
                   <v-icon
                     size="22"
                     :icon="
-                      user.active
+                      user.uActive !== 0
                         ? 'mdi-toggle-switch-off'
                         : 'mdi-toggle-switch-outline'
                     "
@@ -87,6 +89,8 @@
 </template>
 
 <script lang="ts">
+import { User } from "../model/type";
+import { getUsers } from "../services/data";
 import UsersDialog from "./UsersDialog.vue";
 
 export default {
@@ -94,43 +98,35 @@ export default {
     UsersDialog,
   },
   data() {
+    const base: string = "http://localhost/my-vue-vuetify-server/";
+    let users: User[] = [];
     return {
+      users,
+      base,
       showDialog: {
         open: false,
         id: 0,
       },
-      users: [
-        {
-          id: 1,
-          name: "Admin",
-          active: true,
-          level: "5",
-        },
-        {
-          id: 2,
-          name: "User",
-          active: false,
-          level: "2",
-        },
-        {
-          id: 3,
-          name: "Visitor",
-          active: true,
-          level: "0",
-        },
-      ],
     };
+  },
+  mounted() {
+    this.getUsers();
   },
   methods: {
     onOpenDialog(id: number): any {
-      console.log("on open");
+      // console.log("on open");
       this.showDialog.id = id;
       this.showDialog.open = true;
     },
     onDialogClose() {
-      console.log("on close");
+      // console.log("on close");
       this.showDialog.id = 0;
       this.showDialog.open = false;
+    },
+    getUsers() {
+      getUsers().then((data: User[]) => {
+        this.users = data;
+      });
     },
   },
 };
