@@ -1,0 +1,41 @@
+.t-border-custom {
+    border: thin solid rgba(var(--v-border-color), var(--v-border-opacity));
+    border-radius: 5px;
+}
+
+.menu-btn {
+    padding: 0 12px;
+    margin: auto 9px;
+
+    &:disabled {
+        color: #fff !important;
+        background-color: #666 !important;
+    }
+
+    &:not(:disabled) {
+
+        &.v-theme--light,
+        &.v-theme--dark {
+            $green: rgba(76, 175, 80, 0.5);
+            $blue: rgba(33, 150, 243, 0.5);
+            $red: rgba(244, 67, 54, 0.5);
+            $yellow: rgba(251, 141, 0, 0.5);
+
+            &.bg-green-darken-1 {
+                filter: drop-shadow(0 0 2px $green) drop-shadow(0 0 5px $green) drop-shadow(0 0 15px $green);
+            }
+
+            &.bg-blue-darken-1 {
+                filter: drop-shadow(0 0 2px $blue) drop-shadow(0 0 5px $blue) drop-shadow(0 0 15px $blue);
+            }
+
+            &.bg-red-darken-1 {
+                filter: drop-shadow(0 0 2px $red) drop-shadow(0 0 5px $red) drop-shadow(0 0 15px $red);
+            }
+
+            &.bg-warning {
+                filter: drop-shadow(0 0 2px $yellow) drop-shadow(0 0 5px $yellow) drop-shadow(0 0 15px $yellow);
+            }
+        }
+    }
+}
