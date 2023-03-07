@@ -1,11 +1,13 @@
 .t-border-custom {
     border: thin solid rgba(var(--v-border-color), var(--v-border-opacity));
     border-radius: 5px;
+    user-select: none;
 }
 
 .menu-btn {
     padding: 0 12px;
     margin: auto 9px;
+    transition: all .5s ease;
 
     &:disabled {
         color: #fff !important;
@@ -16,10 +18,10 @@
 
         &.v-theme--light,
         &.v-theme--dark {
-            $green: rgba(76, 175, 80, 0.5);
-            $blue: rgba(33, 150, 243, 0.5);
-            $red: rgba(244, 67, 54, 0.5);
-            $yellow: rgba(251, 141, 0, 0.5);
+            $green: rgba(76, 175, 80, 0.4);
+            $blue: rgba(33, 150, 243, 0.4);
+            $red: rgba(244, 67, 54, 0.4);
+            $yellow: rgba(251, 141, 0, 0.4);
 
             &.bg-green-darken-1 {
                 filter: drop-shadow(0 0 2px $green) drop-shadow(0 0 5px $green) drop-shadow(0 0 15px $green);

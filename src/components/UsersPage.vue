@@ -30,13 +30,11 @@
               <td>{{ user.uLevel }}</td>
               <td>
                 <v-btn
-                  class="px-3"
-                  variant="outlined"
+                  class="menu-btn"
+                  variant="flat"
                   min-width="28"
                   @click="onUpdateActive(user.uID, index)"
-                  :color="
-                    user.uActive != 1 ? 'green-lighten-1' : 'red-darken-1'
-                  "
+                  :color="user.uActive != 1 ? 'green-darken-1' : 'red-darken-1'"
                   :disabled="delayActive[index]"
                 >
                   <template v-if="!delayActive[index]">

@@ -1,5 +1,5 @@
 <template>
-  <div class="container open">
+  <div class="container">
     <v-card>
       <v-layout>
         <v-main style="min-height: 100vh; user-select: none">
@@ -68,10 +68,11 @@ export default {
       this.currentRoute = to.name.toLowerCase();
     },
   },
+  emits: ["update:isSidebarOpen"],
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .letter-spacing {
   letter-spacing: 2px;
 }
@@ -89,6 +90,10 @@ export default {
 @media screen and (max-width: 1280px) {
   .container {
     width: 0;
+
+    &.open {
+      width: 200px;
+    }
   }
 }
 </style>

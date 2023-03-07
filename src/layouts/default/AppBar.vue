@@ -1,5 +1,6 @@
 <template>
   <v-app-bar>
+    <v-btn icon="mdi-menu" size="48" class="menu-open"></v-btn>
     <v-app-bar-title>
       <router-link to="home" class="text-decoration-none text-primary">
         <h1 class="ms-6">Vision</h1>
@@ -30,3 +31,15 @@ export default {
   },
 };
 </script>
+
+<style lang="scss" scoped>
+.menu-open {
+  display: none;
+}
+
+@media screen and (max-width: 1280px) {
+  .menu-open {
+    display: block;
+  }
+}
+</style>
