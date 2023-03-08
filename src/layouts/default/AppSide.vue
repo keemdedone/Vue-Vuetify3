@@ -1,39 +1,49 @@
 <template>
-  <div class="container">
+  <div :class="isOpen ? 'container' : 'container open'">
     <v-card>
       <v-layout>
         <v-main style="min-height: 100vh; user-select: none">
-          <v-navigation-drawer>
+          <v-navigation-drawer :rail="isOpen" width="200">
             <v-list nav mandatory>
               <v-list-item
                 min-height="36"
                 color="primary"
-                prepend-icon="mdi-home"
+                title="Home"
                 value="home"
+                :prepend-icon="
+                  currentRoute == 'home' ? 'mdi-home' : 'mdi-home-outline'
+                "
                 :active="currentRoute == 'home'"
                 @click="navigate('home')"
               >
-                <span class="text-uppercase text-body-2">Home</span>
               </v-list-item>
               <v-list-item
                 min-height="36"
                 color="red"
-                prepend-icon="mdi-calendar"
+                title="Calendar"
                 value="calendar"
+                :prepend-icon="
+                  currentRoute == 'calendar'
+                    ? 'mdi-calendar-blank'
+                    : 'mdi-calendar-blank-outline'
+                "
                 :active="currentRoute == 'calendar'"
                 @click="navigate('calendar')"
               >
-                <span class="text-uppercase text-body-2">Calendar</span>
               </v-list-item>
               <v-list-item
                 min-height="36"
                 color="orange-darken-2"
-                prepend-icon="mdi-account"
+                title="Users"
                 value="users"
+                :prepend-icon="
+                  currentRoute == 'users'
+                    ? 'mdi-account'
+                    : 'mdi-account-outline'
+                "
                 :active="currentRoute == 'users'"
                 @click="navigate('users')"
               >
-                <span class="text-uppercase text-body-2">Users</span>
               </v-list-item>
             </v-list>
           </v-navigation-drawer>
@@ -45,6 +55,9 @@
 
 <script lang="ts">
 export default {
+  props: {
+    isOpen: Boolean,
+  },
   data() {
     return {
       currentRoute: "home",
@@ -79,7 +92,7 @@ export default {
 
 .container {
   position: absolute;
-  width: 200px;
+  // width: 200px;
   top: 64px;
   left: 0;
   z-index: 2;
@@ -88,12 +101,12 @@ export default {
 }
 
 @media screen and (max-width: 1280px) {
-  .container {
-    width: 0;
+  // .container {
+  //   width: 0;
 
-    &.open {
-      width: 200px;
-    }
-  }
+  //   &.open {
+  //     width: 200px;
+  //   }
+  // }
 }
 </style>

@@ -176,5 +176,5 @@ export default {
 </script>
 
 <style scoped lang="scss">
-@import "../styles/UsersDialog.scss";
+@import "../styles/UsersPage.scss";
 </style>

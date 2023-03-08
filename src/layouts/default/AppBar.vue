@@ -1,6 +1,11 @@
 <template>
   <v-app-bar>
-    <v-btn icon="mdi-menu" size="48" class="menu-open"></v-btn>
+    <v-btn
+      icon="mdi-menu"
+      size="48"
+      class="menu-open"
+      @click="toggleSidebar"
+    ></v-btn>
     <v-app-bar-title>
       <router-link to="home" class="text-decoration-none text-primary">
         <h1 class="ms-6">Vision</h1>
@@ -16,12 +21,21 @@
 
 <script lang="ts">
 import { useTheme } from "vuetify";
+import { ref } from "vue";
 
 export default {
-  setup() {
+  setup(props, { emit }) {
     const theme = useTheme();
+    const isSidebarOpen = ref(false);
+
+    const toggleSidebar = () => {
+      isSidebarOpen.value = !isSidebarOpen.value;
+      emit("toggle-sidebar", isSidebarOpen.value);
+    };
     return {
       theme,
+      isSidebarOpen,
+      toggleSidebar,
       toggleTheme: () => {
         theme.global.name.value = theme.global.current.value.dark
           ? "light"

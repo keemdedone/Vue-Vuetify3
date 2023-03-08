@@ -23,6 +23,26 @@ export function getUser(id: number): Promise<User> {
     });
 }
 
+export function login(uName: string, password: string) {
+  const url = base + "/user/login.php";
+  const data = {
+    uName,
+    password,
+  };
+  return axios
+    .post(url, data)
+    .then((res: any) => {
+      if (res.data === 1) {
+        return true;
+      }
+      return false;
+    })
+    .catch((error) => {
+      console.error("Error creating user", error);
+      throw error;
+    });
+}
+
 export function createUser(
   fName: string,
   lName: string,
