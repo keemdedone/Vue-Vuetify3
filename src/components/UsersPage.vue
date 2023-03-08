@@ -34,7 +34,9 @@
                   variant="flat"
                   min-width="28"
                   @click="onUpdateActive(user.uID, index)"
-                  :color="user.uActive != 1 ? 'green-darken-1' : 'red-darken-1'"
+                  :color="
+                    user.uActive != 1 ? 'green-lighten-1' : 'red-lighten-1'
+                  "
                   :disabled="delayActive[index]"
                 >
                   <template v-if="!delayActive[index]">
@@ -60,7 +62,7 @@
                   variant="flat"
                   min-width="28"
                   class="menu-btn"
-                  color="green-darken-1"
+                  color="teal-lighten-2"
                   @click="onOpenDialog(2, user.uID)"
                   :disabled="user.uActive == 1"
                 >
@@ -70,7 +72,7 @@
                   variant="flat"
                   min-width="28"
                   class="menu-btn"
-                  color="blue-darken-1"
+                  color="indigo-accent-1"
                   :disabled="user.uActive == 1"
                   @click="onOpenDialog(3, user.uID)"
                 >
@@ -80,7 +82,7 @@
                   variant="flat"
                   min-width="28"
                   class="menu-btn"
-                  color="red-darken-1"
+                  color="red-lighten-1"
                   :disabled="user.uActive == 1"
                   @click="onOpenDialog(4, user.uID)"
                 >

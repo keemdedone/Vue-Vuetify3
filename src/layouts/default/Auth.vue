@@ -256,23 +256,23 @@ export default {
   top: 0;
   bottom: 0;
   transition: left 0.5s ease;
-}
 
-.form-card:first-child {
-  left: 0;
-}
+  &:first-child {
+    left: 0;
 
-.form-card:first-child.slide {
-  transition: left 0.5s ease 0.75s;
-  left: -100%;
-}
+    &.slide {
+      transition: left 0.5s ease 0.75s;
+      left: -100%;
+    }
+  }
 
-.form-card:last-child {
-  left: 100%;
-}
+  &:last-child {
+    left: 100%;
 
-.form-card:last-child.slide {
-  transition: left 0.5s ease 0.75s;
-  left: 0;
+    &.slide {
+      transition: left 0.5s ease 0.75s;
+      left: 0;
+    }
+  }
 }
 </style>
