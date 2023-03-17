@@ -1,11 +1,11 @@
 <template>
   <v-app>
-    <div class="content" v-if="isLogin">
+    <div class="content" v-if="true">
       <AppBar v-on:toggle-sidebar="handleToggleSidebar" />
       <Side :isOpen="isSidebarOpen" />
       <View class="limit-width" />
     </div>
-    <div class="auth" v-if="!isLogin">
+    <div class="auth" v-if="false">
       <Auth v-on:login="handleLoginEvent" />
     </div>
   </v-app>
